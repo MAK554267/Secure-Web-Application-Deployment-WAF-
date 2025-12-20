@@ -50,68 +50,6 @@ v
 v
 [ DVWA Web Application (Docker on Kali) ]
 
-### Architecture Explanation
-
-- All HTTP requests pass through the **Web Application Firewall**
-- Malicious traffic is **blocked immediately**
-- Only legitimate requests reach the application
-- All detected attacks are logged for monitoring and auditing
-
----
-
-## 💻 Technology Stack
-
-| Component | Technology |
-|----------|------------|
-| Operating System | Kali Linux |
-| Attacker Machine | Ubuntu Linux |
-| Web Application | DVWA |
-| Containerization | Docker |
-| Web Server | Apache |
-| Web Application Firewall | ModSecurity |
-| Security Rules | OWASP Core Rule Set |
-| Virtualization | VirtualBox |
-
----
-
-## 🧪 Attacks Demonstrated
-
-- 🔴 SQL Injection  
-- 🔴 Cross-Site Scripting (XSS)  
-- 🔴 Command Injection  
-- 🔴 File Inclusion / Directory Traversal  
-
-All attacks were performed in a **controlled laboratory environment**.
-
----
-
-## 🔐 Secure Software Design Concepts Applied
-
-- Secure Architecture Design  
-- Defense in Depth  
-- Threat Modeling  
-- Secure Deployment  
-- Attack Surface Reduction  
-- Compensating Security Controls  
-- Secure Configuration Management  
-- Logging and Monitoring  
-
----
-
-## ⚙️ How the System Works
-
-1. Attacker sends an HTTP request  
-2. Apache intercepts the request  
-3. ModSecurity inspects the request payload  
-4. OWASP CRS evaluates the anomaly score  
-5. Malicious request is blocked (**403 Forbidden**)  
-6. Attack details are logged  
-
----
-
-## 📊 Logging & Monitoring
-
-All detected attacks are logged in:
 
 
 ### Architecture Explanation
