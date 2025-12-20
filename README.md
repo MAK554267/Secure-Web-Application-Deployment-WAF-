@@ -1,25 +1,16 @@
-# Secure-Web-App-Deployment-WAF-
 # Secure Web Application Deployment Using WAF
 
-## Project Overview
+## Overview
 This project demonstrates Secure Software Design by protecting a vulnerable web application using a Web Application Firewall (WAF).
 
-The system uses Apache with ModSecurity and OWASP Core Rule Set (CRS) to detect and block common web application attacks such as SQL Injection, Cross-Site Scripting (XSS), Command Injection, and File Inclusion.
+Apache with ModSecurity and OWASP Core Rule Set (CRS) is used to detect and block common web application attacks without modifying the application source code.
 
 ---
 
-## Project Objectives
-- Design a secure deployment architecture for a web application
-- Protect the application without modifying its source code
-- Detect and block common web-based attacks
-- Maintain logs for security monitoring and auditing
+## Architecture
+Ubuntu (Attacker) → Apache + ModSecurity (WAF) → DVWA (Docker on Kali)
 
----
-
-## System Architecture
-Ubuntu (Attacker) → Apache + ModSecurity (WAF) → DVWA (Docker)
-
-All incoming HTTP requests are inspected by the WAF before reaching the application.
+All HTTP requests are inspected by the WAF before reaching the application.
 
 ---
 
@@ -44,22 +35,21 @@ All incoming HTTP requests are inspected by the WAF before reaching the applicat
 ---
 
 ## Security Features
-- Real-time detection and blocking
-- Anomaly-based attack detection
-- Audit logging
+- Real-time attack detection and blocking
+- Anomaly-based inspection using OWASP CRS
 - Secure reverse proxy deployment
+- Audit logging for attack analysis
 
 ---
 
-## Repository Structure
-- `documentation/` – Proposal and report
-- `architecture/` – System architecture diagram
-- `configuration/` – WAF and proxy configuration files
-- `attacks/` – Test payloads used for attack simulation
-- `screenshots/` – Proof of attack detection and blocking
-- `activation_guide.md` – Steps to restart the project
+## How to Run
+1. Start Kali and Ubuntu virtual machines
+2. Start Docker and Apache services on Kali
+3. Access the application via:
+   http://KALI-IP:8081
+4. Perform attacks from Ubuntu
 
 ---
 
 ## Disclaimer
-This project is intended for educational purposes only and was implemented in a controlled laboratory environment.
+This project is for educational purposes only and was implemented in a controlled laboratory environment.
