@@ -128,13 +128,98 @@ Log details include:
 
 1. Start Kali and Ubuntu virtual machines  
 2. Enable **Host-Only** and **NAT** network adapters  
-3. Start Docker and Apache services on Kali  
-4. Access the secured application via:
-http://KALI-IP:8081
+3. Run DVWA in Docker on Kali
+   ```bash
+   sudo docker run -d -p 8080:80 vulnerables/web-dvwa
+   ```
+   Check:
+   ```bash
+   sudo docker ps  
+4. Install Apache + ModSecurity (KALI)
+   ```bash
+   sudo apt update 
+   sudo apt install apache2 libapache2-mod-security2 git -y
+   ```
+   Enable modules:
+   ```bash
+   sudo a2enmod security2 
+   sudo a2enmod proxy 
+   sudo a2enmod proxy_http
+   ```
+5. Enable ModSecurity Blocking Mode
+   ```bash
+   sudo cp /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf 
+   sudo nano /etc/modsecurity/modsecurity.conf
+   ```
+   Change:
+   SecRuleEngine DetectionOnly 
+   To: 
+   SecRuleEngine On 
+   Save & exit.
+6. Install OWASP CRS
+   ```bash
+   cd /etc/modsecurity 
+   sudo git clone https://github.com/coreruleset/coreruleset.git 
+   cd coreruleset 
+   sudo cp crs-setup.conf.example crs-setup.conf
+   ```
+7. Link CRS with Apache (IMPORTANT)
+    Edit: 
+    ```bash
+   sudo nano /etc/apache2/mods-enabled/security2.conf
+    ``` 
+   Use ONLY this content: 
+    <IfModule security2_module> 
+      SecDataDir /var/cache/modsecurity 
+      Include /etc/modsecurity/modsecurity.conf 
+      Include /etc/modsecurity/coreruleset/crs-setup.conf 
+      Include /etc/modsecurity/coreruleset/rules/*.conf 
+    </IfModule>
+8. Fix ModSecurity Logs (IMPORTANT)
+   ```bash
+   sudo touch /var/log/apache2/modsec_audit.log 
+   sudo chown www-data:www-data /var/log/apache2/modsec_audit.log 
+   sudo chmod 640 /var/log/apache2/modsec_audit.log
+   ```
+9. Set Apache Reverse Proxy (WAF)
+   Change Apache Port
+   ```bash
+   sudo nano /etc/apache2/ports.conf 
+   ```
+   Listen 8081
+   Create WAF Site
+   ```bash
+   sudo nano /etc/apache2/sites-available/dvwa-waf.conf 
+   ```
+   <VirtualHost *:8081> 
+      ProxyPreserveHost On 
+      ProxyPass / http://127.0.0.1:8080/ 
+      ProxyPassReverse / http://127.0.0.1:8080/ 
+   </VirtualHost>
+   Enable:
+   ```bash
+   sudo a2ensite dvwa-waf.conf 
+   sudo a2dissite 000-default.conf 
+   ```
+10. Increase Blocking Sensitivity (VERY IMPORTANT)
+    ```bash
+    sudo nano /etc/modsecurity/coreruleset/crs-setup.conf
+    ```
+    Uncomment & set: 
+    SecAction \ 
+     "id:900110,phase:1,nolog,pass,t:none,\ 
+      setvar:tx.inbound_anomaly_score_threshold=1"
+11. Start Everything
+    ```bash
+    sudo apachectl configtest 
+    sudo systemctl restart apache2 
+    sudo systemctl status apache2 
+    ```
+12. Correct URLs (REMEMBER)
+    Purpose       |    URL 
+    DVWA without WAF | http://KALI-IP:8080 
+    DVWA protected | http://KALI-IP:8081  
 
-5. Perform attacks from the Ubuntu machine  
-
----
 
 ## 🔄 Project Reactivation (After Shutdown)
 
