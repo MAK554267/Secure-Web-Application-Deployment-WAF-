@@ -152,70 +152,80 @@ Log details include:
    sudo nano /etc/modsecurity/modsecurity.conf
    ```
    Change:
-   SecRuleEngine DetectionOnly 
-   To: 
-   SecRuleEngine On 
+   ```bash
+   SecRuleEngine DetectionOnly
+   ``` 
+   To:
+   ```bash 
+   SecRuleEngine On
+   ``` 
    Save & exit.
-6. Install OWASP CRS
+7. Install OWASP CRS
    ```bash
    cd /etc/modsecurity 
    sudo git clone https://github.com/coreruleset/coreruleset.git 
    cd coreruleset 
    sudo cp crs-setup.conf.example crs-setup.conf
    ```
-7. Link CRS with Apache (IMPORTANT)
+8. Link CRS with Apache (IMPORTANT)
     Edit: 
     ```bash
    sudo nano /etc/apache2/mods-enabled/security2.conf
     ``` 
-   Use ONLY this content: 
+   Use ONLY this content:
+   ```bash
     <IfModule security2_module> 
       SecDataDir /var/cache/modsecurity 
       Include /etc/modsecurity/modsecurity.conf 
       Include /etc/modsecurity/coreruleset/crs-setup.conf 
       Include /etc/modsecurity/coreruleset/rules/*.conf 
     </IfModule>
-8. Fix ModSecurity Logs (IMPORTANT)
+   ```
+9. Fix ModSecurity Logs (IMPORTANT)
    ```bash
    sudo touch /var/log/apache2/modsec_audit.log 
    sudo chown www-data:www-data /var/log/apache2/modsec_audit.log 
    sudo chmod 640 /var/log/apache2/modsec_audit.log
    ```
-9. Set Apache Reverse Proxy (WAF)
+10. Set Apache Reverse Proxy (WAF)
    Change Apache Port
    ```bash
-   sudo nano /etc/apache2/ports.conf 
+   sudo nano /etc/apache2/ports.conf
+   // Listen 8081
    ```
-   Listen 8081
    Create WAF Site
    ```bash
    sudo nano /etc/apache2/sites-available/dvwa-waf.conf 
    ```
+   ```bash
    <VirtualHost *:8081> 
       ProxyPreserveHost On 
       ProxyPass / http://127.0.0.1:8080/ 
       ProxyPassReverse / http://127.0.0.1:8080/ 
    </VirtualHost>
+   ```
    Enable:
    ```bash
    sudo a2ensite dvwa-waf.conf 
    sudo a2dissite 000-default.conf 
    ```
-10. Increase Blocking Sensitivity (VERY IMPORTANT)
+11. Increase Blocking Sensitivity (VERY IMPORTANT)
     ```bash
     sudo nano /etc/modsecurity/coreruleset/crs-setup.conf
     ```
-    Uncomment & set: 
+    Uncomment & set:
+    ```bash
     SecAction \ 
      "id:900110,phase:1,nolog,pass,t:none,\ 
       setvar:tx.inbound_anomaly_score_threshold=1"
-11. Start Everything
+    ```
+12. Start Everything
     ```bash
     sudo apachectl configtest 
     sudo systemctl restart apache2 
     sudo systemctl status apache2 
     ```
-12. Correct URLs (REMEMBER)
+13. Correct URLs (REMEMBER)
     Purpose       |    URL 
     DVWA without WAF | http://KALI-IP:8080 
     DVWA protected | http://KALI-IP:8081  
