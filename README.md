@@ -188,27 +188,27 @@ Log details include:
       sudo chmod 640 /var/log/apache2/modsec_audit.log
       ```
 10. Set Apache Reverse Proxy (WAF)
-   Change Apache Port
-      ```bash
-      sudo nano /etc/apache2/ports.conf
-      // Listen 8081
-      ```
-   Create WAF Site
-      ```bash
-      sudo nano /etc/apache2/sites-available/dvwa-waf.conf 
-      ```
-      ```bash
-      <VirtualHost *:8081> 
+      Change Apache Port
+    ```bash
+    sudo nano /etc/apache2/ports.conf
+    // Listen 8081
+    ```
+      Create WAF Site
+   ```bash
+   sudo nano /etc/apache2/sites-available/dvwa-waf.conf 
+   ```
+   ```bash
+   <VirtualHost *:8081> 
          ProxyPreserveHost On 
          ProxyPass / http://127.0.0.1:8080/ 
          ProxyPassReverse / http://127.0.0.1:8080/ 
-      </VirtualHost>
-      ```
-      Enable:
-      ```bash
-      sudo a2ensite dvwa-waf.conf 
-      sudo a2dissite 000-default.conf 
-      ```
+   </VirtualHost>
+   ```
+   Enable   
+   ```bash
+   sudo a2ensite dvwa-waf.conf 
+   sudo a2dissite 000-default.conf 
+   ```
 11. Increase Blocking Sensitivity (VERY IMPORTANT)
     ```bash
     sudo nano /etc/modsecurity/coreruleset/crs-setup.conf
