@@ -39,16 +39,25 @@ Instead of modifying the application source code, a **secure deployment architec
 ---
 
 ## 🏗️ Secure System Architecture
-[ Ubuntu (Attacker) ]
++---------------------------+
+| Ubuntu (Attacker) |
++---------------------------+
 |
 v
-[ Apache Web Server ]
++---------------------------+
+| Apache Web Server |
++---------------------------+
 |
 v
-[ ModSecurity (WAF) + OWASP CRS ]
++-----------------------------------+
+| ModSecurity (WAF) + OWASP CRS |
++-----------------------------------+
 |
 v
-[ DVWA Web Application (Docker on Kali) ]
++-----------------------------------+
+| DVWA Web Application |
+| (Docker on Kali) |
++-----------------------------------+
 
 
 
