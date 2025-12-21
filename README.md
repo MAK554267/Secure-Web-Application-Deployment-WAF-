@@ -162,14 +162,14 @@ Log details include:
    SecRuleEngine On
    ``` 
    Save & exit.
-7. Install OWASP CRS
+6. Install OWASP CRS
    ```bash
    cd /etc/modsecurity 
    sudo git clone https://github.com/coreruleset/coreruleset.git 
    cd coreruleset 
    sudo cp crs-setup.conf.example crs-setup.conf
    ```
-8. Link CRS with Apache (IMPORTANT)
+7. Link CRS with Apache (IMPORTANT)
     Edit: 
     ```bash
    sudo nano /etc/apache2/mods-enabled/security2.conf
@@ -183,13 +183,13 @@ Log details include:
       Include /etc/modsecurity/coreruleset/rules/*.conf 
     </IfModule>
    ```
-9. Fix ModSecurity Logs (IMPORTANT)
+8. Fix ModSecurity Logs (IMPORTANT)
       ```bash
       sudo touch /var/log/apache2/modsec_audit.log 
       sudo chown www-data:www-data /var/log/apache2/modsec_audit.log 
       sudo chmod 640 /var/log/apache2/modsec_audit.log
       ```
-10. Set Apache Reverse Proxy (WAF)
+9. Set Apache Reverse Proxy (WAF)
 
     **Change Apache Port**
 
@@ -223,7 +223,7 @@ Log details include:
     sudo a2dissite 000-default.conf
     ```
 
-11. Increase Blocking Sensitivity (VERY IMPORTANT)
+10. Increase Blocking Sensitivity (VERY IMPORTANT)
     ```bash
     sudo nano /etc/modsecurity/coreruleset/crs-setup.conf
     ```
@@ -233,17 +233,21 @@ Log details include:
      "id:900110,phase:1,nolog,pass,t:none,\ 
       setvar:tx.inbound_anomaly_score_threshold=1"
     ```
-12. Start Everything
+11. Start Everything
     ```bash
     sudo apachectl configtest 
     sudo systemctl restart apache2 
     sudo systemctl status apache2 
     ```
-13. Correct URLs (REMEMBER)
+12. Correct URLs (REMEMBER)
     |Purpose|URL|
     |--------------|-------| 
     |DVWA without WAF|http://KALI-IP:8080| 
-    |DVWA protected|http://KALI-IP:8081|  
+    |DVWA protected|http://KALI-IP:8081|
+13. Log Monitoring
+    ```bash
+    sudo tail -f /var/log/apache2/modsec_audit.log
+    ```
 
 
 ## 🔄 Project Reactivation (After Shutdown)
