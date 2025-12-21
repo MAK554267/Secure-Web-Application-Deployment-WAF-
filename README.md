@@ -257,4 +257,42 @@ sudo systemctl start docker apache2
 docker start $(docker ps -aq)
 ```
 
+## 🎓 Educational Value & Learning Outcomes
+
+- Practical understanding of web application vulnerabilities  
+- Hands-on experience with Web Application Firewall (WAF) deployment  
+- Application of Secure Software Design (SSD) principles  
+- Real-world attack simulation and mitigation  
+- Secure deployment without modifying application source code  
+
+---
+
+## ⚠️ Ethical Disclaimer
+
+This project is intended **strictly for educational and academic purposes**.  
+All attacks were performed in an **isolated laboratory environment** on intentionally vulnerable software.
+
+Unauthorized testing on real systems is **illegal and unethical**.
+
+---
+
+## 📚 References
+
+- OWASP Top 10 Web Application Security Risks  
+- OWASP ModSecurity Core Rule Set  
+- Apache HTTP Server Documentation  
+- Docker Documentation  
+- NIST Secure Software Development Framework (SSDF)  
+
+---
+
+<div align="center">
+
+### 🎓 Developed for Secure Software Design (SSD)  
+**University of Wah – BS Cybersecurity**
+
+⭐ *Star this repository if it helped your Secure Software Design learning journey!*
+
+</div>
+
 
