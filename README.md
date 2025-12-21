@@ -39,6 +39,7 @@ Instead of modifying the application source code, a **secure deployment architec
 ---
 
 ## 🏗️ Secure System Architecture
+```
 +---------------------------+
 | Ubuntu (Attacker) |
 +---------------------------+
@@ -58,7 +59,7 @@ v
 | DVWA Web Application |
 | (Docker on Kali) |
 +-----------------------------------+
-
+```
 
 
 ### Architecture Explanation
