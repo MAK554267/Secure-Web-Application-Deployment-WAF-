@@ -226,9 +226,10 @@ Log details include:
     sudo systemctl status apache2 
     ```
 13. Correct URLs (REMEMBER)
-    Purpose       |    URL 
-    DVWA without WAF | http://KALI-IP:8080 
-    DVWA protected | http://KALI-IP:8081  
+    |Purpose|URL|
+    |--------------|-------| 
+    |DVWA without WAF|http://KALI-IP:8080| 
+    |DVWA protected|http://KALI-IP:8081|  
 
 
 ## 🔄 Project Reactivation (After Shutdown)
