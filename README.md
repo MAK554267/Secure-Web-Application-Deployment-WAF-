@@ -39,19 +39,7 @@ Instead of modifying the application source code, a **secure deployment architec
 ---
 
 ## 🏗️ Secure System Architecture
-```
-Ubuntu (Attacker)
-        ↓
-Apache Web Server
-+-----------------------------+
-|  ModSecurity (WAF)          |
-|  + OWASP Core Rule Set      |
-+-----------------------------+
-        ↓
-DVWA Web Application
-(Running in Docker on Kali)
 
-```
 ![Project Banner](SystemArchitecture.jpg)
 
 
