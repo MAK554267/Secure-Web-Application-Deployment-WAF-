@@ -288,11 +288,23 @@ Unauthorized testing on real systems is **illegal and unethical**.
 
 <div align="center">
 
-### 🎓 Developed for Secure Software Design (SSD)  
-**University of Wah – BS Cybersecurity**
+**🎓 Developed for Secure Software Design (SSD)**
 
-⭐ *Star this repository if it helped your Secure Software Design learning journey!*
+*Applying secure software principles through hands-on cybersecurity research*
+
+[![University](https://img.shields.io/badge/Institution-University_of_Wah-blue.svg)](#)
+[![Program](https://img.shields.io/badge/Program-BS_Cybersecurity-purple.svg)](#)
+[![Course](https://img.shields.io/badge/Course-Secure_Software_Design-teal.svg)](#)
+[![Semester](https://img.shields.io/badge/Semester-5th-green.svg)](#)
+[![Project](https://img.shields.io/badge/Type-Academic_Project-orange.svg)](#)
+
+---
+
+**"Secure by design, resilient by practice."**
+
+**⭐ Star this repository if it supported your Secure Software Design learning journey!**
 
 </div>
+
 
 
