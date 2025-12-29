@@ -52,6 +52,7 @@ DVWA Web Application
 (Running in Docker on Kali)
 
 ```
+![Project Banner](SystemArchitecture.jpg)
 
 
 ### Architecture Explanation
