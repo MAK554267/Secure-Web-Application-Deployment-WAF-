@@ -261,16 +261,21 @@ This section evaluates the effectiveness of the Web Application Firewall (WAF) b
 SQL Injection is a critical web vulnerability where an attacker manipulates SQL queries to gain unauthorized access to the database.
 
 ### 1.1 SQL Injection Without WAF (Insecure DVWA)
+![SQL Injection Successful without WAF](images/sqli_no_waf.png)
 
 ### 1.2 SQL Injection With WAF Enabled (Secure DVWA)
+![SQL Injection Blocked by WAF](images/sqli_waf_blocked.png)
 
 ## 2. Cross-Site Scripting (XSS) Attack
 
 Cross-Site Scripting (XSS) is a client-side web vulnerability that allows attackers to inject malicious JavaScript code into web pages viewed by other users.
 
 ### 2.1 XSS Without WAF (Insecure DVWA)
+![XSS Executed without WAF](images/xss_no_waf.png)
 
 ### 2.2 XSS With WAF Enabled (Secure DVWA)
+![XSS Blocked by WAF](images/xss_waf_blocked.png)
+
 ---
 ## 🎓 Educational Value & Learning Outcomes
 
