@@ -251,7 +251,27 @@ Log details include:
 sudo systemctl start docker apache2
 docker start $(docker ps -aq)
 ```
+---
+## Attack Testing & WAF Evaluation
 
+This section evaluates the effectiveness of the Web Application Firewall (WAF) by performing real-world web attacks on DVWA.
+
+## 1. SQL Injection (SQLi) Attack
+
+SQL Injection is a critical web vulnerability where an attacker manipulates SQL queries to gain unauthorized access to the database.
+
+### 1.1 SQL Injection Without WAF (Insecure DVWA)
+
+### 1.2 SQL Injection With WAF Enabled (Secure DVWA)
+
+## 2. Cross-Site Scripting (XSS) Attack
+
+Cross-Site Scripting (XSS) is a client-side web vulnerability that allows attackers to inject malicious JavaScript code into web pages viewed by other users.
+
+### 2.1 XSS Without WAF (Insecure DVWA)
+
+### 2.2 XSS With WAF Enabled (Secure DVWA)
+---
 ## 🎓 Educational Value & Learning Outcomes
 
 - Practical understanding of web application vulnerabilities  
