@@ -120,22 +120,19 @@ Log details include:
 1. Start Kali and Ubuntu virtual machines  
 2. Enable **Host-Only** and **NAT** network adapters
 3. Install Docker
-  ```bash
-   sudo apt update
-   sudo apt install docker.io -y
-  ``` 
-4. Pull & Run DVWA Container
+    ```bash
+     sudo apt update
+     sudo apt install docker.io -y
+    ``` 
+4. Pull & Run DVWA in Docker on Kali
    ```bash
    sudo docker pull vulnerables/web-dvwa
-   ```
-5. Run DVWA in Docker on Kali
-   ```bash
    sudo docker run -d -p 8080:80 vulnerables/web-dvwa
    ```
    Check:
    ```bash
    sudo docker ps  
-6. Install Apache + ModSecurity (KALI)
+5. Install Apache + ModSecurity (KALI)
    ```bash
    sudo apt update 
    sudo apt install apache2 libapache2-mod-security2 git -y
@@ -146,7 +143,7 @@ Log details include:
    sudo a2enmod proxy 
    sudo a2enmod proxy_http
    ```
-7. Enable ModSecurity Blocking Mode
+6. Enable ModSecurity Blocking Mode
    ```bash
    sudo cp /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf 
    sudo nano /etc/modsecurity/modsecurity.conf
@@ -160,14 +157,14 @@ Log details include:
    SecRuleEngine On
    ``` 
    Save & exit.
-8. Install OWASP CRS
+7. Install OWASP CRS
    ```bash
    cd /etc/modsecurity 
    sudo git clone https://github.com/coreruleset/coreruleset.git 
    cd coreruleset 
    sudo cp crs-setup.conf.example crs-setup.conf
    ```
-9. Link CRS with Apache (IMPORTANT)
+8. Link CRS with Apache (IMPORTANT)
     Edit: 
     ```bash
    sudo nano /etc/apache2/mods-enabled/security2.conf
@@ -181,13 +178,13 @@ Log details include:
       Include /etc/modsecurity/coreruleset/rules/*.conf 
     </IfModule>
    ```
-10. Fix ModSecurity Logs (IMPORTANT)
+9. Fix ModSecurity Logs (IMPORTANT)
       ```bash
       sudo touch /var/log/apache2/modsec_audit.log 
       sudo chown www-data:www-data /var/log/apache2/modsec_audit.log 
       sudo chmod 640 /var/log/apache2/modsec_audit.log
       ```
-11. Set Apache Reverse Proxy (WAF)
+10. Set Apache Reverse Proxy (WAF)
 
     **Change Apache Port**
 
@@ -221,7 +218,7 @@ Log details include:
     sudo a2dissite 000-default.conf
     ```
 
-12. Increase Blocking Sensitivity (VERY IMPORTANT)
+11. Increase Blocking Sensitivity (VERY IMPORTANT)
     ```bash
     sudo nano /etc/modsecurity/coreruleset/crs-setup.conf
     ```
@@ -231,18 +228,18 @@ Log details include:
      "id:900110,phase:1,nolog,pass,t:none,\ 
       setvar:tx.inbound_anomaly_score_threshold=1"
     ```
-13. Start Everything
+12. Start Everything
     ```bash
     sudo apachectl configtest 
     sudo systemctl restart apache2 
     sudo systemctl status apache2 
     ```
-14. Correct URLs (REMEMBER)
+13. Correct URLs (REMEMBER)
     |Purpose|URL|
     |--------------|-------| 
     |DVWA without WAF|http://KALI-IP:8080| 
     |DVWA protected|http://KALI-IP:8081|
-15. Log Monitoring
+14. Log Monitoring
     ```bash
     sudo tail -f /var/log/apache2/modsec_audit.log
     ```
