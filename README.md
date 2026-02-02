@@ -40,7 +40,7 @@ Instead of modifying the application source code, a **secure deployment architec
 
 ## 🏗️ Secure System Architecture
 
-![Project Banner](SystemArchitecture.jpg)
+![Project Banner](images/SystemArchitecture.jpg)
 
 
 ### Architecture Explanation
