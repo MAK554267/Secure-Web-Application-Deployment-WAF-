@@ -309,8 +309,8 @@ Unauthorized testing on real systems is **illegal and unethical**.
 
 ### Contributors:
 - **[@Q3hr](https://github.com/Q3hr)** 
-- @user2
-
+- **[@PSYCHrt](https://github.com/PSYCHrt)** 
+---
 <div align="center">
 
 **🎓 Developed for Secure Software Design (SSD)**
