@@ -305,6 +305,11 @@ Unauthorized testing on real systems is **illegal and unethical**.
 - NIST Secure Software Development Framework (SSDF)  
 
 ---
+## 👻 Development Team 
+
+### Contributors:
+- @Q3hr
+- @user2
 
 <div align="center">
 
