@@ -308,7 +308,7 @@ Unauthorized testing on real systems is **illegal and unethical**.
 ## 👻 Development Team 
 
 ### Contributors:
-1. **[@Q3hr](https://github.com/Q3hr)** 
+- **[@Q3hr](https://github.com/Q3hr)** 
 - @user2
 
 <div align="center">
